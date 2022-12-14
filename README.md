@@ -80,3 +80,78 @@ ax1.pie(sizes, labels=labels, autopct='%1.1f%%',
         shadow=True, startangle=90)
 ax1.axis('equal')
 plt.show()
+
+
+ Budget calculator
+Budget calculator is a simple Python application that will allow u to calculate your
+budget
+Features
+    Store your spendings as file of any type (.csv preferred). It is a long-term
+    storage for your data
+    Get spendings for category (overall, by month)
+    See pie chart for spendings per month by category
+    Language of App is Russian, Belarusian or English (by your choise)
+Design
+Budget calculator will use file of any type to store all there data in the following
+columns:
+    Category
+    Date
+    Amount
+Category
+Category column defines source of spendings (Bar, cafe, groceries store, pharmacies, online-shopping). Definition of these categories is on you. You can define any number of categories and choose the way you will store them
+Date
+Date column defines particular date when your spendings were performed at. Format:
+YYYY-MM-DD
+Hints: use pyhon datetime library
+Date will help you to group data by partivular month. datetime library will allow you to get year and month of spendings.
+Amount
+Amount column defines money value that was spent for particular category. Example: I spent 20 BYN for groceries in the market. Amount = 20
+Currency' logic can be defined by yourself. Otherwise, you can just assume that all
+spendings are performed in BYN currency and expand logic in the future if you want.
+Example
+Scenario:
+1. I spent 20 BYN for groceries in the market on the 20th of May
+2. I spent 35 BYN for beer in Leedbeer on the 21th of May
+Result
+Output file is the following:
+      Category,Date,Amount
+Groceries,2022-05-20,20
+Bar,2022-05-21,35
+
+ GroupBy
+As a user, I want to be able to get spendings per category and per month . You can use any functionality to implement this logic. So, having the following file:
+   Category,Date,Amount
+Groceries,2022-05-20,20
+Bar,2022-05-21,35
+Aliexpress,2022-06-21,60
+Bar,2022-06-25,20
+Groceries,2022-06-02,120
+Scenarios
+GROUPBY CATEGORY
+I want to be able to get my spendings by, for example, Groceries category.
+   Category,Date,Amount
+Groceries,2022-05-20,20
+Groceries,2022-06-02,120
+GROUPBY MONTH
+I want to be able to get my spendings by Month: 2022-05
+ Category,Date,Amount
+Groceries,2022-05-20,20
+Bar,2022-05-21,35
+ GROUPBY MONTH AND CATEGORY
+I want to be able to get my spendings by Month and Groceries category : Groceries,
+2022-05
+ Category,Date,Amount
+Groceries,2022-05-20,20
+Representation of output
+As a user I want to be able to see results not as a text on console, but as a chart:
+
+  This code should help you
+ import matplotlib.pyplot as plt
+# Pie chart, where the slices will be ordered and plotted counter-clockwise:
+labels = 'Groceries', 'Bar', 'Pharmacies', 'Pet', 'Transport'
+sizes = [350, 70, 5, 60, 30]
+fig1, ax1 = plt.subplots()
+ax1.pie(sizes, labels=labels, autopct='%1.1f%%',
+shadow=True, startangle=90)
+ax1.axis('equal') # Equal aspect ratio ensures that pie is drawn as a circle.
+plt.show()
